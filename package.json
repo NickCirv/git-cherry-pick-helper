@@ -1,0 +1,34 @@
+{
+  "name": "git-cherry-pick-helper",
+  "version": "1.0.0",
+  "description": "Interactive cherry-pick helper — browse commits across branches and cherry-pick with conflict guidance",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "git-cherry-pick-helper": "./index.js",
+    "gcph": "./index.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "developer-tools",
+    "cli",
+    "nodejs",
+    "zero-dependencies",
+    "git",
+    "cherry-pick",
+    "interactive",
+    "tui"
+  ],
+  "author": "NickCirv",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NickCirv/git-cherry-pick-helper.git"
+  },
+  "homepage": "https://github.com/NickCirv/git-cherry-pick-helper#readme",
+  "bugs": {
+    "url": "https://github.com/NickCirv/git-cherry-pick-helper/issues"
+  }
+}
