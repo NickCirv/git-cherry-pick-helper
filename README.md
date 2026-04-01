@@ -1,3 +1,5 @@
+![Banner](banner.svg)
+
 # git-cherry-pick-helper
 
 Interactive cherry-pick helper for Git — browse commits across branches in a terminal TUI and cherry-pick them with full conflict guidance.
