@@ -1,100 +1,52 @@
-![Banner](banner.svg)
+<div align="center">
 
 # git-cherry-pick-helper
 
-Interactive cherry-pick helper for Git — browse commits across branches in a terminal TUI and cherry-pick them with full conflict guidance.
+**Browse commits across branches in a terminal TUI and cherry-pick them with conflict guidance**
 
-Zero external dependencies. Pure Node.js ES modules. Node 18+.
+[![License: MIT](https://img.shields.io/badge/license-MIT-green?labelColor=0B0A09)](LICENSE)
+[![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen?labelColor=0B0A09)](package.json)
+[![Node](https://img.shields.io/badge/node-%3E%3D18-blue?labelColor=0B0A09)](package.json)
+
+</div>
 
 ## Install
 
 ```bash
-npm install -g git-cherry-pick-helper
+npx github:NickCirv/git-cherry-pick-helper
 ```
 
-Or use directly without install:
+Or install globally:
 
 ```bash
-npx git-cherry-pick-helper
+npm install -g github:NickCirv/git-cherry-pick-helper
 ```
 
 ## Usage
 
+```bash
+gcph                          # browse all branches interactively
+gcph <branch>                 # browse a specific branch
+gcph --search "hotfix"        # filter commits by message
+gcph --since "3 days ago"     # limit to recent commits
+gcph pick abc1234 def5678     # non-interactive: cherry-pick by hash
+gcph status                   # show conflict status + resolution steps
+gcph continue                 # continue after resolving conflicts
+gcph abort                    # abort the current cherry-pick
 ```
-gcph                         Browse all branches, select commits to cherry-pick
-gcph <branch>                Browse commits from a specific branch
-gcph --search "fix"          Filter commits by message
-gcph --since "1 week ago"    Limit to recent commits
-gcph pick <hash> [hash2...]  Non-interactive cherry-pick one or more commits
-gcph status                  Show conflict status and resolution guide
-gcph continue                Continue after resolving conflicts
-gcph abort                   Abort current cherry-pick
-```
-
-## TUI Controls
 
 | Key | Action |
 |-----|--------|
 | `↑` / `↓` or `j` / `k` | Navigate commits |
 | `Space` | Select / deselect commit |
 | `Enter` | Cherry-pick selected commits |
-| `p` | Toggle preview pane (shows diff) |
+| `p` | Toggle diff preview pane |
 | `q` / `Escape` | Quit |
 
-## Examples
+## What it does
 
-```bash
-# Browse all branches interactively
-gcph
+Launches a scrollable terminal TUI showing up to 200 commits across all branches (or a filtered subset). Select one or more commits with `Space`, then press `Enter` to cherry-pick them. When conflicts occur, `gcph status` prints the conflicted files and an exact resolution workflow; `gcph continue` and `gcph abort` wrap the underlying git commands. All git calls use `execFileSync` with explicit argument arrays — no shell injection possible.
 
-# Browse commits from a specific branch
-gcph feature/my-branch
+---
 
-# Filter commits by keyword
-gcph --search "hotfix"
-
-# Show only commits from the last 3 days
-gcph --since "3 days ago"
-
-# Combine: search on a specific branch
-gcph main --search "bug"
-
-# Non-interactive: cherry-pick specific hashes
-gcph pick abc1234 def5678
-
-# Check status when conflicts occur
-gcph status
-
-# After resolving conflicts:
-gcph continue
-
-# Give up and go back:
-gcph abort
-```
-
-## Conflict Resolution Workflow
-
-When a cherry-pick hits conflicts:
-
-1. Run `gcph status` — shows conflicted files and step-by-step guide
-2. Open each conflicted file and resolve `<<<<< ===== >>>>>` markers
-3. Stage the resolved files: `git add <file>`
-4. Run `gcph continue` to complete the cherry-pick
-5. Or run `gcph abort` to cancel entirely
-
-## Security
-
-- All git commands run via `execFileSync` / `spawnSync` with explicit argument arrays — no shell injection possible
-- No `exec` or `execSync` with string interpolation
-- No hardcoded secrets or credentials
-- No external network calls
-
-## Requirements
-
-- Node.js 18+
-- Git installed and available in PATH
-- Must be run inside a git repository
-
-## License
-
-MIT
+<sub>Zero dependencies · Node 18+ · MIT · by <a href="https://github.com/NickCirv">NickCirv</a></sub>
